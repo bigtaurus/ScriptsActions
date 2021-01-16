@@ -34,7 +34,7 @@ jobs:
         ref: master
     - name: '运行 【修改jdCookie】'
       run: |
-             sed -i '/\\x47\\x49\\x54\\x48\\x55\\x42/d' jdCookie.js
+             sed -i '/sendNotify/,/exit/d' jdCookie.js
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Apply fix-jdCookie changes
