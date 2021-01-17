@@ -1,0 +1,37 @@
+
+name: 获取互助码
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 1,8,16,24 * *'
+  # watch:
+  #   types: started
+  # repository_dispatch:
+  #   types: js_name
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ github.repository }}
+          ref: 'master'
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - name: install npm
+        run: npm install
+      - name: '运行 【获取互助码】'
+        run: |
+             node jd_get_share_code.js
+        env:
+          JD_COOKIE: ${{ secrets.JD_COOKIE }}
+          JD_DEBUG: ${{ secrets.JD_DEBUG }}
+          PUSH_KEY: ${{ secrets.PUSH_KEY }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_USER_ID: ${{ secrets.TG_USER_ID }}
