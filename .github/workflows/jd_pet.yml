@@ -37,3 +37,4 @@ jobs:
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
           PETSHARECODES: ${{ secrets.PETSHARECODES }}
           PET_NOTIFY_CONTROL: ${{ secrets.PET_NOTIFY_CONTROL }}
+          JD_USER_AGENT: ${{ secrets.JD_USER_AGENT }}
