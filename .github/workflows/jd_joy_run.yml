@@ -1,0 +1,51 @@
+
+name: 宠汪汪赛跑助力
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '45 10,11 * * *'
+  # watch:
+  #   types: started
+  # repository_dispatch:
+  #   types: jxcfd
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+      - name: Checkout
+        run: |
+          wget -P ~/scripts https://raw.githubusercontent.com/lin-xh/ScriptsActions/main/others/jd_joy_run.js
+          wget -P ~/scripts https://raw.githubusercontent.com/lin-xh/ScriptsActions/master/jdCookie.js
+          wget -P ~/scripts https://raw.githubusercontent.com/lin-xh/ScriptsActions/master/sendNotify.js
+          wget -P ~/scripts https://raw.githubusercontent.com/lin-xh/ScriptsActions/master/package.json
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Cache node_modules
+        uses: actions/cache@v2 
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
+      - name: '运行 【宠汪汪赛跑助力】'
+        run: | 
+          cd ~/scripts
+          npm install 
+          node jd_joy_run.js
+        env:
+          JD_COOKIE: ${{ secrets.JD_COOKIE }}
+          JD_DEBUG: ${{ secrets.JD_DEBUG }}
+          PUSH_KEY: ${{ secrets.PUSH_KEY }}
+          BARK_PUSH: ${{ secrets.BARK_PUSH }}
+          BARK_SOUND: ${{ secrets.BARK_SOUND }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_USER_ID: ${{ secrets.TG_USER_ID }}
+          JXNCTOKENS: ${{ secrets.JXNCTOKENS }}
+          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
+          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
+          IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
