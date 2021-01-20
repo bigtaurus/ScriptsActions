@@ -37,3 +37,4 @@ jobs:
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
           JD_USER_AGENT: ${{ secrets.JD_USER_AGENT }}
           JD_IMMORTAL_LATLON: ${{ secrets.JD_IMMORTAL_LATLON }}
+          JDSXSY_SHARECODES: ${{ secrets.JDSXSY_SHARECODES }}
