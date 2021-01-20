@@ -4,7 +4,7 @@ name: 京东神仙书院(至2月5日)
 on:
   workflow_dispatch:
   schedule:
-    - cron: '40 0 * * *'
+    - cron: '40 0,12 * * *'
   # watch:
   #   types: started
   # repository_dispatch:
