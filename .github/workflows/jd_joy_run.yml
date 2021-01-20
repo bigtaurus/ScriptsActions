@@ -19,6 +19,7 @@ jobs:
         run: |
           wget -P ~/scripts https://raw.githubusercontent.com/lin-xh/ScriptsActions/main/others/jd_joy_run.js
           wget -P ~/scripts https://raw.githubusercontent.com/lin-xh/ScriptsActions/master/jdCookie.js
+          wget -P ~/scripts https://raw.githubusercontent.com/lin-xh/ScriptsActions/master/USER_AGENTS.js
           wget -P ~/scripts https://raw.githubusercontent.com/lin-xh/ScriptsActions/master/sendNotify.js
           wget -P ~/scripts https://raw.githubusercontent.com/lin-xh/ScriptsActions/master/package.json
       - name: Use Node.js ${{ matrix.node-version }}
